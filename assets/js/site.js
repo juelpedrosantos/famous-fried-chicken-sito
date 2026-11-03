@@ -123,23 +123,25 @@
   }
 
   const PROMO_KEY = 'ffc-promo-visto';
-  const PROMO_INTERVAL_MS = 24 * 60 * 60 * 1000;
 
-  /** true se il popup è già stato mostrato nelle ultime 24 ore su questo dispositivo. */
-  function promoRecentlySeen() {
+  /**
+   * true se il popup è già comparso in questa visita (stessa scheda): così non ritorna
+   * navigando nel sito o tornando da Qromo, ma ricompare a ogni nuova apertura del sito.
+   */
+  function promoSeenThisVisit() {
     try {
-      const seenAt = Number(root.localStorage.getItem(PROMO_KEY));
-      root.localStorage.setItem(PROMO_KEY, String(Date.now()));
-      return Boolean(seenAt) && Date.now() - seenAt < PROMO_INTERVAL_MS;
+      const seen = root.sessionStorage.getItem(PROMO_KEY) === '1';
+      root.sessionStorage.setItem(PROMO_KEY, '1');
+      return seen;
     } catch (err) {
       return false; // archiviazione non disponibile: il popup compare
     }
   }
 
-  /** Popup della Fidelity Card: solo alla prima apertura (poi non ricompare per 24 ore). */
+  /** Popup della Fidelity Card: a ogni nuova apertura del sito, una volta per visita. */
   function setupPromo() {
     const promo = $('[data-promo]');
-    if (!promo || typeof promo.showModal !== 'function' || promoRecentlySeen()) return;
+    if (!promo || typeof promo.showModal !== 'function' || promoSeenThisVisit()) return;
     promo.showModal();
     promo.addEventListener('click', (event) => {
       if (event.target === promo || event.target.closest('[data-promo-close], a')) promo.close();
