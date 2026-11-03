@@ -122,10 +122,24 @@
     targets.forEach((el) => observer.observe(el));
   }
 
-  /** Popup della Fidelity Card: compare ogni volta che si apre il sito. */
+  const PROMO_KEY = 'ffc-promo-visto';
+  const PROMO_INTERVAL_MS = 24 * 60 * 60 * 1000;
+
+  /** true se il popup è già stato mostrato nelle ultime 24 ore su questo dispositivo. */
+  function promoRecentlySeen() {
+    try {
+      const seenAt = Number(root.localStorage.getItem(PROMO_KEY));
+      root.localStorage.setItem(PROMO_KEY, String(Date.now()));
+      return Boolean(seenAt) && Date.now() - seenAt < PROMO_INTERVAL_MS;
+    } catch (err) {
+      return false; // archiviazione non disponibile: il popup compare
+    }
+  }
+
+  /** Popup della Fidelity Card: solo alla prima apertura (poi non ricompare per 24 ore). */
   function setupPromo() {
     const promo = $('[data-promo]');
-    if (!promo || typeof promo.showModal !== 'function') return;
+    if (!promo || typeof promo.showModal !== 'function' || promoRecentlySeen()) return;
     promo.showModal();
     promo.addEventListener('click', (event) => {
       if (event.target === promo || event.target.closest('[data-promo-close], a')) promo.close();
