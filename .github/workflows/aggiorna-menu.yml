@@ -1,0 +1,37 @@
+# Ogni ora riscarica il menu da Qromo; se è cambiato salva la nuova versione
+# e Netlify ripubblica il sito da solo.
+name: Aggiorna menu da Qromo
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installa cwebp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq webp
+      - name: Scarica il menu
+        run: python3 tools/build_menu_data.py
+      - name: Test della logica
+        run: node --test tests/menu-logic.test.js
+      - name: Salva se cambiato
+        run: |
+          if [ -n "$(git status --porcelain assets)" ]; then
+            git config user.name "menu-bot"
+            git config user.email "menu-bot@users.noreply.github.com"
+            git add assets
+            git commit -m "chore: aggiorna menu da Qromo"
+            git push
+          else
+            echo "Menu invariato"
+          fi

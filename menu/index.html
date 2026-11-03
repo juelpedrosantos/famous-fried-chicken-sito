@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Menu e ordini | Famous Fried Chicken Latina</title>
+  <meta name="description" content="Il menu di Famous Fried Chicken a Latina: chicken burger, wings, tenders, fries e salse dip. Componi il tuo ordine e ritira in Via G. Oberdan 35/37.">
+  <meta name="theme-color" content="#aa191e">
+  <meta property="og:title" content="Menu | Famous Fried Chicken">
+  <meta property="og:description" content="Chicken burger, wings, tenders e fries a Latina. Ordina e ritira.">
+  <meta property="og:image" content="../assets/img/photos/burger-stack.webp">
+  <link rel="icon" href="../assets/img/brand/mascot.png">
+  <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/brand.css">
+  <link rel="stylesheet" href="../assets/css/menu.css">
+</head>
+<body>
+  <a class="skip-link" href="#menu-main">Vai al menu</a>
+
+  <header class="m-header">
+    <div class="m-header__inner container">
+      <a class="m-back" href="../index.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Sito</span>
+      </a>
+      <a class="m-logo" href="../index.html" aria-label="Famous Fried Chicken, torna al sito">
+        <img src="../assets/img/brand/wordmark.png" alt="" width="900" height="357">
+      </a>
+      <button class="m-cart-btn" type="button" data-open-cart aria-label="Apri il carrello">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="m-cart-btn__count" data-cart-count hidden>0</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="m-hero tray-pattern" aria-labelledby="menu-title">
+    <div class="m-hero__inner container">
+      <div class="m-hero__text">
+        <p class="kicker">Latina · Via G. Oberdan 35/37</p>
+        <h1 id="menu-title" class="display m-hero__title">Il <span class="script">menu</span></h1>
+        <p class="m-hero__lead">Chicken burger, wings, tenders e fries croccanti. Scegli, personalizza e ritira in negozio.</p>
+        <div class="m-hero__meta">
+          <span class="status-pill" data-open-status>Orari in caricamento</span>
+          <a class="btn btn--deliveroo btn--small" href="https://deliveroo.it/en/menu/roma/latina/famous-fried-chicken-latina" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16.861 0l-1.127 10.584L13.81 1.66 7.777 2.926l1.924 8.922-8.695 1.822 1.535 7.127L17.832 24l3.498-7.744L22.994.636 16.861 0zM11.39 13.61a.755.755 0 01.322.066c.208.093.56.29.63.592.103.434.004.799-.312 1.084v.002c-.315.284-.732.258-1.174.113-.441-.145-.637-.672-.47-1.309.124-.473.71-.544 1.004-.549zm4.142.548c.447-.012.832.186 1.05.543.217.357.107.75-.122 1.143h-.002c-.229.392-.83.445-1.422.16-.399-.193-.397-.684-.353-.983a.922.922 0 01.193-.447c.142-.177.381-.408.656-.416Z"/></svg> Deliveroo</a>
+          <button class="link-btn" type="button" data-open-allergens>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            Info allergeni
+          </button>
+        </div>
+      </div>
+      <figure class="m-hero__photo">
+        <img src="../assets/img/photos/burger-famous.webp" alt="Il Famous Supreme tenuto in mano sullo sfondo rosso Famous" width="900" height="1350">
+      </figure>
+    </div>
+  </section>
+
+  <nav class="m-cats" aria-label="Categorie del menu">
+    <div class="m-cats__track container" data-category-nav></div>
+  </nav>
+
+  <main id="menu-main" class="m-main container" data-menu-root>
+    <noscript>
+      <p class="m-noscript">Per consultare il menu attiva JavaScript, oppure apri il <a href="https://famousfriedchicken.qromo.it/">menu su Qromo</a>.</p>
+    </noscript>
+  </main>
+
+  <footer class="m-footer">
+    <div class="container m-footer__inner">
+      <img src="../assets/img/brand/mascot.png" alt="" width="64" height="64" loading="lazy">
+      <p>Famous Fried Chicken · Via G. Oberdan 35/37, 04100 Latina (LT)<br>
+        <span data-company></span></p>
+      <p class="m-footer__small">Prezzi e disponibilità aggiornati al <span data-updated></span>. Le foto dei prodotti sono indicative.</p>
+    </div>
+  </footer>
+
+  <div class="m-cartbar" data-cartbar hidden>
+    <button class="m-cartbar__btn" type="button" data-open-cart>
+      <span class="m-cartbar__count" data-cartbar-count>0</span>
+      <span class="m-cartbar__label">Il tuo ordine</span>
+      <span class="m-cartbar__total" data-cartbar-total>€ 0,00</span>
+    </button>
+  </div>
+
+  <div class="toast" role="status" aria-live="polite" data-toast hidden></div>
+
+  <dialog class="sheet item-sheet" data-item-dialog aria-labelledby="item-dialog-title"></dialog>
+
+  <dialog class="sheet cart-sheet" data-cart-dialog aria-labelledby="cart-dialog-title"></dialog>
+
+  <dialog class="sheet info-sheet" data-allergen-dialog aria-labelledby="allergen-title">
+    <div class="sheet__head">
+      <h2 id="allergen-title" class="display sheet__title">Info allergeni</h2>
+      <button class="icon-btn" type="button" data-close-dialog aria-label="Chiudi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="sheet__body">
+      <p>Tutti i prodotti possono contenere tracce dei seguenti allergeni. Per informazioni su ingredienti e allergeni chiedi al nostro staff.</p>
+      <div class="allergen-groups">
+        <section>
+          <h3>Cibi</h3>
+          <ul class="tag-list"><li>Sedano</li><li>Molluschi</li><li>Solfiti</li><li>Uova</li><li>Pesce</li><li>Lupini</li><li>Latte</li><li>Senape</li><li>Sesamo</li><li>Crostacei</li><li>Soia</li></ul>
+        </section>
+        <section>
+          <h3>Cereali</h3>
+          <ul class="tag-list"><li>Glutine</li><li>Orzo</li><li>Avena</li><li>Segale</li><li>Farro</li><li>Grano</li><li>Kamut</li></ul>
+        </section>
+        <section>
+          <h3>Frutta a guscio</h3>
+          <ul class="tag-list"><li>Arachidi</li><li>Mandorle</li><li>Noci brasiliane</li><li>Anacardi</li><li>Nocciole</li><li>Macadamia</li><li>Noce pecan</li><li>Pistacchi</li><li>Noci</li></ul>
+        </section>
+      </div>
+    </div>
+    <div class="sheet__foot">
+      <button class="btn btn--yellow" type="button" data-close-dialog>Torna al menu</button>
+    </div>
+  </dialog>
+
+  <script src="../assets/js/menu-data.js"></script>
+  <script src="../assets/js/order-config.js"></script>
+  <script src="../assets/js/menu-logic.js"></script>
+  <script src="../assets/js/menu-render.js"></script>
+  <script src="../assets/js/menu-cart.js"></script>
+  <script src="../assets/js/menu-app.js"></script>
+</body>
+</html>
