@@ -122,17 +122,10 @@
     targets.forEach((el) => observer.observe(el));
   }
 
-  /** Popup della Fidelity Card: compare all'apertura, una volta per visita. */
+  /** Popup della Fidelity Card: compare ogni volta che si apre il sito. */
   function setupPromo() {
     const promo = $('[data-promo]');
     if (!promo || typeof promo.showModal !== 'function') return;
-    const SEEN_KEY = 'ffc-promo-visto';
-    try {
-      if (root.sessionStorage.getItem(SEEN_KEY)) return;
-      root.sessionStorage.setItem(SEEN_KEY, '1');
-    } catch (err) {
-      /* Archiviazione non disponibile: il popup compare comunque. */
-    }
     promo.showModal();
     promo.addEventListener('click', (event) => {
       if (event.target === promo || event.target.closest('[data-promo-close], a')) promo.close();
