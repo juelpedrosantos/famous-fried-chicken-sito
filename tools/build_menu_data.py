@@ -35,7 +35,7 @@ MAX_PAIRINGS = 4
 BEST_SELLERS = 4
 # Orari ufficiali del locale (0 = lunedì). "24:00" = mezzanotte di chiusura, mostrata come 00:00.
 OPENING_HOURS = [
-    {"day": d, "open": "11:00", "close": "24:00" if d in (4, 5) else "23:30"} for d in range(7)
+    {"day": d, "open": "11:30", "close": "24:00" if d in (4, 5) else "23:30"} for d in range(7)
 ]
 CHILI = "\U0001F336"
 
