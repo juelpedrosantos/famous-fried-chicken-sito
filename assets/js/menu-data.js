@@ -1,6 +1,6 @@
 /* Generato da tools/build_menu_data.py: non modificare a mano, rilancia lo script. */
 window.FFC_MENU = {
-  "updatedAt": "2026-11-02",
+  "updatedAt": "2026-11-03",
   "source": "https://famousfriedchicken.qromo.it/",
   "business": {
     "name": "Famous Fried Chicken",
@@ -59,7 +59,7 @@ window.FFC_MENU = {
     820897,
     820898,
     880801,
-    820881
+    828529
   ],
   "categories": [
     {
@@ -248,7 +248,7 @@ window.FFC_MENU = {
             880801,
             820898,
             828529,
-            828474
+            828530
           ],
           "options": [
             {
@@ -677,7 +677,7 @@ window.FFC_MENU = {
             880801,
             820902,
             827836,
-            838150
+            827829
           ],
           "options": [
             {
@@ -1894,8 +1894,8 @@ window.FFC_MENU = {
           "pairsWith": [
             820897,
             820902,
-            820904,
-            880801
+            880801,
+            820904
           ],
           "options": [
             {
@@ -3449,8 +3449,8 @@ window.FFC_MENU = {
           "pairsWith": [
             820897,
             828529,
-            820902,
-            820899
+            828528,
+            820902
           ],
           "options": []
         },
@@ -3466,8 +3466,8 @@ window.FFC_MENU = {
           "pairsWith": [
             828530,
             820904,
-            828529,
-            820897
+            820897,
+            828529
           ],
           "options": []
         },
@@ -3786,7 +3786,7 @@ window.FFC_MENU = {
             828529,
             880801,
             828528,
-            820904
+            827836
           ],
           "options": []
         },
@@ -3815,7 +3815,7 @@ window.FFC_MENU = {
             880801,
             828530,
             828529,
-            838150
+            828528
           ],
           "options": []
         },
@@ -3830,7 +3830,6 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             828529,
-            828530,
             828528
           ],
           "options": []
