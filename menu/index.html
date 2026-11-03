@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Menu e ordini | Famous Fried Chicken Latina</title>
-  <meta name="description" content="Il menu di Famous Fried Chicken a Latina: chicken burger, wings, tenders, fries e salse dip. Componi il tuo ordine e ritira in Via G. Oberdan 35/37.">
+  <meta name="description" content="Il menu di Famous Fried Chicken a Latina: chicken burger, wings, tenders, fries e salse dip. Ordina online e ritira in Via G. Oberdan 35/37.">
   <meta name="theme-color" content="#aa191e">
   <meta property="og:title" content="Menu | Famous Fried Chicken">
   <meta property="og:description" content="Chicken burger, wings, tenders e fries a Latina. Ordina e ritira.">
@@ -26,10 +26,7 @@
       <a class="m-logo" href="../index.html" aria-label="Famous Fried Chicken, torna al sito">
         <img src="../assets/img/brand/wordmark.png" alt="" width="900" height="357">
       </a>
-      <button class="m-cart-btn" type="button" data-open-cart aria-label="Apri il carrello">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-        <span class="m-cart-btn__count" data-cart-count hidden>0</span>
-      </button>
+      <a class="btn btn--small btn--yellow m-order-btn" href="https://famousfriedchicken.qromo.it/">Ordina</a>
     </div>
   </header>
 
@@ -38,9 +35,10 @@
       <div class="m-hero__text">
         <p class="kicker">Latina · Via G. Oberdan 35/37</p>
         <h1 id="menu-title" class="display m-hero__title">Il <span class="script">menu</span></h1>
-        <p class="m-hero__lead">Chicken burger, wings, tenders e fries croccanti. Scegli, personalizza e ritira in negozio.</p>
+        <p class="m-hero__lead">Chicken burger, wings, tenders e fries croccanti. Sfoglia il menu e ordina online: ritiro in negozio o consegna con Deliveroo.</p>
         <div class="m-hero__meta">
           <span class="status-pill" data-open-status>Orari in caricamento</span>
+          <a class="btn btn--small" href="https://famousfriedchicken.qromo.it/">Ordina su Qromo</a>
           <a class="btn btn--deliveroo btn--small" href="https://deliveroo.it/en/menu/roma/latina/famous-fried-chicken-latina" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16.861 0l-1.127 10.584L13.81 1.66 7.777 2.926l1.924 8.922-8.695 1.822 1.535 7.127L17.832 24l3.498-7.744L22.994.636 16.861 0zM11.39 13.61a.755.755 0 01.322.066c.208.093.56.29.63.592.103.434.004.799-.312 1.084v.002c-.315.284-.732.258-1.174.113-.441-.145-.637-.672-.47-1.309.124-.473.71-.544 1.004-.549zm4.142.548c.447-.012.832.186 1.05.543.217.357.107.75-.122 1.143h-.002c-.229.392-.83.445-1.422.16-.399-.193-.397-.684-.353-.983a.922.922 0 01.193-.447c.142-.177.381-.408.656-.416Z"/></svg> Deliveroo</a>
           <button class="link-btn" type="button" data-open-allergens>
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -73,19 +71,14 @@
     </div>
   </footer>
 
-  <div class="m-cartbar" data-cartbar hidden>
-    <button class="m-cartbar__btn" type="button" data-open-cart>
-      <span class="m-cartbar__count" data-cartbar-count>0</span>
-      <span class="m-cartbar__label">Il tuo ordine</span>
-      <span class="m-cartbar__total" data-cartbar-total>€ 0,00</span>
-    </button>
+  <div class="m-cartbar">
+    <a class="m-cartbar__btn" href="https://famousfriedchicken.qromo.it/">
+      <span class="m-cartbar__label">Ordina online su Qromo</span>
+      <span class="m-cartbar__total" aria-hidden="true">→</span>
+    </a>
   </div>
 
-  <div class="toast" role="status" aria-live="polite" data-toast hidden></div>
-
   <dialog class="sheet item-sheet" data-item-dialog aria-labelledby="item-dialog-title"></dialog>
-
-  <dialog class="sheet cart-sheet" data-cart-dialog aria-labelledby="cart-dialog-title"></dialog>
 
   <dialog class="sheet info-sheet" data-allergen-dialog aria-labelledby="allergen-title">
     <div class="sheet__head">
@@ -117,10 +110,8 @@
   </dialog>
 
   <script src="../assets/js/menu-data.js"></script>
-  <script src="../assets/js/order-config.js"></script>
   <script src="../assets/js/menu-logic.js"></script>
   <script src="../assets/js/menu-render.js"></script>
-  <script src="../assets/js/menu-cart.js"></script>
   <script src="../assets/js/menu-app.js"></script>
 </body>
 </html>

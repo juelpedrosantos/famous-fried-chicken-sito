@@ -11,11 +11,9 @@
 
   const ICONS = {
     plus: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>',
-    minus: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>',
     close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>',
     star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.7 5.9 6.4.7-4.8 4.3 1.4 6.3L12 16.8 6.3 20l1.4-6.3L2.9 9.4l6.4-.7z" fill="currentColor"/></svg>',
     chili: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.2 7.2c3 .3 4.8 3 4.1 6.5-.9 4.4-5.7 8-12.1 8.6-1 .1-1.3-.9-.5-1.5 3.9-2.7 5.1-6 5.6-9.2.4-2.8 1.3-4.6 2.9-4.4z" fill="currentColor"/><path d="M15.4 7.3c-.1-1.8.9-3.4 2.8-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
-    check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   };
 
   function img(path, alt, cls, sizes) {
@@ -27,10 +25,6 @@
     if (!level) return '';
     const label = `Piccante: ${level} su ${MAX_SPICE}`;
     return `<span class="spice" role="img" aria-label="${label}" title="${label}">${ICONS.chili.repeat(level)}</span>`;
-  }
-
-  function extraPrice(cents) {
-    return cents ? `<span class="choice__price">+ ${formatPrice(cents)}</span>` : '';
   }
 
   function categoryNav(categories) {
@@ -84,61 +78,9 @@
       </section>`;
   }
 
-  function ruleHint(rule, choiceCount) {
-    if (rule.kind === 'included') return 'Incluso';
-    if (rule.kind === 'multi' && !rule.required && choiceCount === 1) return 'Facoltativo';
-    if (rule.kind === 'single') return rule.required ? 'Obbligatorio · scegli 1' : 'Facoltativo · max 1';
-    if (rule.kind === 'quantity') {
-      if (rule.min && rule.min === rule.max) return `Obbligatorio · scegli ${rule.min}`;
-      return rule.required ? `Almeno ${rule.min}` : 'Facoltativo';
-    }
-    if (rule.max !== Infinity) return `Facoltativo · max ${rule.max}`;
-    return rule.required ? `Almeno ${rule.min}` : 'Facoltativo · scegli quanti vuoi';
-  }
-
-  function choiceRow(group, rule, choice) {
-    const id = `opt-${group.id}-${choice.id}`;
-    const name = `<span class="choice__name">${esc(choice.name)} ${spice(choice.spice)}</span>`;
-    const out = choice.available ? '' : '<span class="choice__out">Esaurito</span>';
-    if (rule.kind === 'included') {
-      return `<li class="choice choice--included"><span class="choice__mark">${ICONS.check}</span>${name}</li>`;
-    }
-    if (rule.kind === 'quantity') {
-      return `
-        <li class="choice choice--qty" data-choice="${choice.id}">
-          ${name}${extraPrice(choice.price)}${out}
-          <span class="stepper stepper--small">
-            <button type="button" class="stepper__btn" data-step="-1" data-group="${group.id}" data-choice-id="${choice.id}" aria-label="Togli ${esc(choice.name)}">${ICONS.minus}</button>
-            <output class="stepper__value" data-qty-for="${group.id}-${choice.id}">0</output>
-            <button type="button" class="stepper__btn" data-step="1" data-group="${group.id}" data-choice-id="${choice.id}" aria-label="Aggiungi ${esc(choice.name)}"${choice.available ? '' : ' disabled'}>${ICONS.plus}</button>
-          </span>
-        </li>`;
-    }
-    const type = rule.kind === 'single' && rule.required ? 'radio' : 'checkbox';
-    return `
-      <li class="choice">
-        <input class="choice__input" type="${type}" id="${id}" name="g-${group.id}" data-group="${group.id}" data-choice-id="${choice.id}"${choice.available ? '' : ' disabled'}>
-        <label class="choice__label" for="${id}">
-          <span class="choice__mark choice__mark--${type}" aria-hidden="true">${ICONS.check}</span>
-          ${name}${extraPrice(choice.price)}${out}
-        </label>
-      </li>`;
-  }
-
-  function optionGroup(group) {
-    const rule = groupRule(group);
-    return `
-      <fieldset class="opt-group" data-group-box="${group.id}">
-        <legend class="opt-group__legend">
-          <span class="opt-group__name">${esc(group.name)}</span>
-          <span class="opt-group__hint">${ruleHint(rule, group.choices.length)}</span>
-        </legend>
-        <p class="opt-group__error" data-group-error="${group.id}" hidden></p>
-        <ul class="choice-list" role="list">${group.choices.map((c) => choiceRow(group, rule, c)).join('')}</ul>
-      </fieldset>`;
-  }
-
-  function itemDialog(item) {
+  /** Scheda prodotto in sola consultazione: l'ordine si fa su Qromo. */
+  function itemDialog(item, orderUrl) {
+    const groups = (item.options || []).filter((g) => groupRule(g).kind !== 'included').map((g) => g.name);
     return `
       <div class="item-sheet__media">
         ${img(item.image, item.name, 'item-sheet__img')}
@@ -148,17 +90,12 @@
         <h2 class="display item-sheet__title" id="item-dialog-title">${esc(item.name)} ${spice(item.spice)}</h2>
         ${item.description ? `<p class="item-sheet__desc">${esc(item.description)}</p>` : ''}
         <p class="item-sheet__price">${formatPrice(item.price)}</p>
-        ${(item.options || []).map(optionGroup).join('')}
+        ${groups.length ? `<p class="item-sheet__custom">Personalizzabile al momento dell'ordine: ${esc(groups.join(' · '))}</p>` : ''}
       </div>
       <div class="sheet__foot item-sheet__foot">
-        <span class="stepper">
-          <button type="button" class="stepper__btn" data-qty-step="-1" aria-label="Diminuisci quantità">${ICONS.minus}</button>
-          <output class="stepper__value" data-item-qty aria-live="polite">1</output>
-          <button type="button" class="stepper__btn" data-qty-step="1" aria-label="Aumenta quantità">${ICONS.plus}</button>
-        </span>
-        <button class="btn add-cta" type="button" data-add-item${item.available ? '' : ' disabled'}>
-          ${item.available ? 'Aggiungi' : 'Esaurito'} <span data-item-total>${formatPrice(item.price)}</span>
-        </button>
+        ${item.available
+          ? `<a class="btn add-cta" href="${esc(orderUrl)}">Ordina su Qromo <span aria-hidden="true">→</span></a>`
+          : '<span class="btn add-cta" aria-disabled="true">Esaurito</span>'}
       </div>`;
   }
 
