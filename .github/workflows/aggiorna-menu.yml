@@ -1,10 +1,10 @@
-# Ogni 10 minuti riscarica il menu da Qromo; se è cambiato salva la nuova versione
+# Ogni ora riscarica il menu da Qromo; se è cambiato salva la nuova versione
 # e Netlify ripubblica il sito da solo.
 name: Aggiorna menu da Qromo
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
