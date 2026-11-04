@@ -93,22 +93,6 @@
     observer.observe(hero);
   }
 
-  function setupReveal() {
-    const targets = $$('.reveal');
-    if (!('IntersectionObserver' in root)) {
-      targets.forEach((el) => el.classList.add('is-in'));
-      return;
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-in');
-        observer.unobserve(entry.target);
-      });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    targets.forEach((el) => observer.observe(el));
-  }
-
   const PROMO_KEY = 'ffc-promo-visto';
 
   /**
@@ -143,6 +127,5 @@
   }
   $$('[data-year]').forEach((el) => { el.textContent = String(new Date().getFullYear()); });
   setupHeader();
-  setupReveal();
   setupPromo();
 })(typeof self !== 'undefined' ? self : this);

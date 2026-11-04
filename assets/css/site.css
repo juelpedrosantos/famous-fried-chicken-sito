@@ -36,7 +36,7 @@
   color: var(--cream); text-align: center;
   border-bottom: 3px solid var(--navy);
 }
-.hero__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+.hero__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; will-change: transform; }
 .hero__shade {
   position: absolute; inset: 0; z-index: -1;
   background:
@@ -69,10 +69,6 @@
 @keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(60, 207, 120, 0); } 100% { box-shadow: 0 0 0 0 rgba(60, 207, 120, 0); } }
 
 /* Entrata del logo */
-.js .hero__logo img { animation: logo-in 700ms var(--ease-out) both 120ms; }
-.js .hero__claim { animation: claim-in 600ms var(--ease-out) both 380ms; }
-@keyframes logo-in { from { opacity: 0; transform: scale(0.88) rotate(-4deg); } }
-@keyframes claim-in { from { opacity: 0; transform: rotate(-3deg) translateY(12px); } }
 
 /* ---------- Nastro ---------- */
 /* Il contenitore taglia gli angoli del nastro ruotato: niente scroll orizzontale */
@@ -90,6 +86,8 @@
 }
 .ticker__track .star { color: var(--red); }
 @keyframes ticker { to { transform: translateX(-50%); } }
+/* Con GSAP attivo il nastro lo muove site-motion.js */
+.gsap-ready .ticker__track { animation: none; }
 
 /* ---------- Sezioni ---------- */
 .section { padding-block: clamp(64px, 10vw, 120px); scroll-margin-top: 60px; }
@@ -114,9 +112,9 @@
 .btn--navy-outline { --btn-bg: var(--cream); --btn-fg: var(--navy); }
 
 /* Comparsa allo scroll (solo con JS attivo) */
-/* "translate" si somma alle rotazioni già impostate con "transform" */
-.js .reveal { opacity: 0; translate: 0 18px; transition: opacity 600ms var(--ease-out), translate 600ms var(--ease-out); }
-.js .reveal.is-in { opacity: 1; translate: none; }
+/* Nascosti finché GSAP non li fa comparire (assets/js/site-motion.js); .is-in è la riserva senza GSAP */
+.js .reveal { opacity: 0; }
+.js .reveal.is-in { opacity: 1; }
 
 /* ---------- Specialità ---------- */
 .spec-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -262,7 +260,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ticker__track { animation: none; }
-  .js .reveal { opacity: 1; translate: none; }
+  .js .reveal { opacity: 1; }
 }
 
 /* Nomi prodotto e nastro: stesso font dei titoli (Obviously Narrow Bold) */
