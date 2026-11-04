@@ -178,12 +178,6 @@
 .best-card__body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
 .best-card__name { font-stretch: 75%; font-weight: 900; text-transform: uppercase; font-size: 1.35rem; line-height: 1.05; }
 .best-card__desc { font-size: 0.9rem; color: var(--navy-soft); }
-.best-card__foot { margin-top: auto; padding-top: 10px; display: flex; align-items: center; justify-content: space-between; }
-.best-card__price { color: var(--red); font-weight: 900; font-style: italic; font-size: 1.2rem; }
-.best-card__cta { font-weight: 900; font-style: italic; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.04em; }
-@media (hover: hover) and (pointer: fine) {
-  .best-card:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--navy); }
-}
 
 /* ---------- Chi siamo ---------- */
 .story { display: grid; gap: clamp(36px, 6vw, 72px); align-items: center; }

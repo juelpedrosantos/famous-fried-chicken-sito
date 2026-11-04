@@ -7,7 +7,6 @@
 
   const L = root.FFCLogic;
   const menu = root.FFC_MENU;
-  const MENU_PAGE = 'menu/index.html';
   const SAUCE_CATEGORY = 'salse-dip';
   // Stesso ordine del termometro esposto nel locale: dalla più piccante alla più delicata.
   const THERMOMETER_ORDER = ['Atomic Sauce', 'Louisiana Sauce', 'Spicy Mayo', 'Mango e Habanero', 'Lemon Pepper', 'Famous Sauce',
@@ -28,14 +27,6 @@
       el.classList.toggle('is-closed', !status.open);
       if (status.open) el.textContent = `Aperto ora · fino alle ${status.until}`;
       else if (status.next) el.textContent = `Chiuso ora · riapre alle ${status.next}`;
-    });
-  }
-
-  function fillPrices() {
-    $$('[data-price-from]').forEach((el) => {
-      const cat = category(el.getAttribute('data-price-from'));
-      const min = cat && L.minPrice(cat.items);
-      if (min) el.textContent = `da ${L.formatPrice(min)}`;
     });
   }
 
@@ -64,7 +55,7 @@
     if (!list || !items.length) return;
     list.innerHTML = items.map((item, index) => `
       <li class="reveal">
-        <a class="best-card" href="${MENU_PAGE}#item-${item.id}">
+        <article class="best-card">
           <span class="best-card__media">
             ${item.image ? `<img src="${L.escapeHtml(item.image)}" alt="${L.escapeHtml(item.name)}" width="640" height="640" loading="lazy">` : ''}
             <span class="best-card__rank" aria-hidden="true">${index + 1}</span>
@@ -72,12 +63,8 @@
           <span class="best-card__body">
             <span class="best-card__name">${L.escapeHtml(item.name)}</span>
             ${item.description ? `<span class="best-card__desc">${L.escapeHtml(item.description)}</span>` : ''}
-            <span class="best-card__foot">
-              <span class="best-card__price">${L.formatPrice(item.price)}</span>
-              <span class="best-card__cta">Ordina →</span>
-            </span>
           </span>
-        </a>
+        </article>
       </li>`).join('');
   }
 
@@ -150,7 +137,6 @@
 
   if (menu && Array.isArray(menu.categories) && L) {
     fillStatus();
-    fillPrices();
     fillSauces();
     fillBestSellers();
     fillHours();

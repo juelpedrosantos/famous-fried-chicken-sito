@@ -1,6 +1,6 @@
 /**
- * Avvio del menu: rendering delle categorie, scheda prodotto e orari.
- * Il menu è una vetrina: l'ordine e il pagamento avvengono su Qromo.
+ * Avvio del menu: rendering delle categorie e orari.
+ * Il menu è solo una vetrina (senza prezzi né schede prodotto): l'ordine avviene su Qromo.
  * Dipende da FFC_MENU (dati), FFCLogic e FFCRender.
  */
 (function (root) {
@@ -17,16 +17,6 @@
   if (!menu || !Array.isArray(menu.categories)) {
     menuRoot.innerHTML = '<p class="m-noscript">Il menu non è disponibile in questo momento. Apri il <a href="https://famousfriedchicken.qromo.it/">menu su Qromo</a>.</p>';
     return;
-  }
-
-  const itemDialog = $('[data-item-dialog]');
-
-  function openItem(id) {
-    const item = L.findItem(menu, id);
-    if (!item) return;
-    itemDialog.innerHTML = R.itemDialog(item, menu.business.orderUrl);
-    if (!itemDialog.open) itemDialog.showModal();
-    $('.sheet__body', itemDialog).scrollTop = 0;
   }
 
   function renderMenu() {
@@ -77,21 +67,13 @@
 
   function handleHash() {
     const hash = decodeURIComponent(root.location.hash.slice(1));
-    const itemMatch = /^item-(\d+)$/.exec(hash);
-    if (itemMatch) {
-      openItem(Number(itemMatch[1]));
-    } else if (hash) {
+    if (hash) {
       const target = document.getElementById(hash);
       if (target && target.hasAttribute('data-section')) target.scrollIntoView();
     }
   }
 
   document.addEventListener('click', (event) => {
-    const card = event.target.closest('[data-item-id]');
-    if (card) {
-      openItem(Number(card.getAttribute('data-item-id')));
-      return;
-    }
     if (event.target.closest('[data-open-allergens]')) {
       $('[data-allergen-dialog]').showModal();
       return;

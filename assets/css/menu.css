@@ -116,19 +116,11 @@ body { padding-bottom: 96px; }
 @media (min-width: 720px) { .item-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
 
 .item-card {
-  width: 100%; height: 100%; text-align: left; cursor: pointer;
+  width: 100%; height: 100%;
   display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: stretch;
   padding: 10px; background: #fff;
   border: 2.5px solid var(--navy); border-radius: var(--radius-m);
   box-shadow: var(--shadow-sticker);
-  transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
-  -webkit-tap-highlight-color: transparent;
-}
-.item-card:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--navy); }
-@media (hover: hover) and (pointer: fine) {
-  .item-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--navy); }
-  .item-card:hover .item-card__img { transform: scale(1.05); }
-  .item-card:hover .add-btn { background: var(--red); color: var(--cream); }
 }
 @media (min-width: 1000px) { .item-card { grid-template-columns: 140px minmax(0, 1fr); } }
 
@@ -136,34 +128,23 @@ body { padding-bottom: 96px; }
   aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--photo-bg);
   align-self: start;
 }
-.item-card__img { width: 100%; height: 100%; object-fit: cover; transition: transform 300ms var(--ease-out); }
-.item-card__img--empty, .item-sheet__img--empty {
+.item-card__img { width: 100%; height: 100%; object-fit: cover; }
+.item-card__img--empty {
   display: grid; place-items: center; width: 100%; height: 100%; background: var(--photo-bg);
 }
-.item-card__img--empty img, .item-sheet__img--empty img { width: 55%; opacity: 0.5; }
+.item-card__img--empty img { width: 55%; opacity: 0.5; }
 
 .item-card__body { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 2px 4px 2px 0; }
 .item-card__name {
-  font-stretch: 78%; font-weight: 900; text-transform: uppercase;
+  margin: 0; font-stretch: 78%; font-weight: 900; text-transform: uppercase;
   font-size: 1.2rem; line-height: 1.05; letter-spacing: 0.01em;
 }
 .item-card__desc {
-  font-size: 0.88rem; line-height: 1.4; color: var(--navy-soft);
+  margin: 0; font-size: 0.88rem; line-height: 1.4; color: var(--navy-soft);
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
-.item-card__foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 4px; }
-.item-card__price { color: var(--red); font-weight: 900; font-style: italic; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
-.add-btn {
-  width: 38px; height: 38px; display: grid; place-items: center; flex: none;
-  background: var(--yellow); color: var(--navy);
-  border: 2.5px solid var(--navy); border-radius: 50%;
-  transition: background-color 160ms ease, color 160ms ease;
-}
-.add-btn svg { width: 18px; height: 18px; }
-
-.item-card.is-out { cursor: default; }
 .item-card.is-out .item-card__media { filter: grayscale(1); opacity: 0.55; }
-.item-card.is-out .item-card__name, .item-card.is-out .item-card__price { opacity: 0.6; }
+.item-card.is-out .item-card__name { opacity: 0.6; }
 
 .badges { display: flex; flex-wrap: wrap; gap: 6px; }
 .badge {
@@ -218,18 +199,17 @@ body { padding-bottom: 96px; }
   border: 2.5px solid var(--navy); border-radius: 50%; cursor: pointer;
 }
 .icon-btn svg { width: 20px; height: 20px; }
-.icon-btn--float { position: absolute; top: 12px; right: 12px; box-shadow: 3px 3px 0 var(--navy); }
 
 @media (min-width: 720px) {
-  .item-sheet, .info-sheet {
+  .info-sheet {
     width: min(580px, 100% - 32px); max-height: min(88dvh, 900px);
     margin: auto; border-radius: 24px;
     border: 3px solid var(--navy); box-shadow: 10px 10px 0 var(--navy);
     transform: none; opacity: 1;
     transition: transform 260ms var(--ease-out), opacity 200ms ease, overlay 260ms allow-discrete, display 260ms allow-discrete;
   }
-  .item-sheet:not([open]), .info-sheet:not([open]) { transform: scale(0.96); opacity: 0; }
-  @starting-style { .item-sheet[open], .info-sheet[open] { transform: scale(0.96); opacity: 0; } }
+  .info-sheet:not([open]) { transform: scale(0.96); opacity: 0; }
+  @starting-style { .info-sheet[open] { transform: scale(0.96); opacity: 0; } }
 
   .cart-sheet {
     width: min(460px, 100%); height: 100dvh; max-height: 100dvh;
@@ -241,18 +221,8 @@ body { padding-bottom: 96px; }
   @starting-style { .cart-sheet[open] { transform: translateX(100%); } }
 }
 
-/* ---------- Scheda prodotto ---------- */
-.item-sheet__media { position: relative; flex: none; background: var(--photo-bg); border-bottom: 2.5px solid var(--navy); }
-.item-sheet__img { width: 100%; height: clamp(180px, 34dvh, 300px); object-fit: contain; }
-.item-sheet__img--empty { height: clamp(180px, 34dvh, 300px); }
-.item-sheet__title { font-size: clamp(2rem, 8vw, 2.6rem); }
-.item-sheet__title .spice svg { width: 20px; height: 20px; }
-.item-sheet__desc { margin: 10px 0 0; color: var(--navy-soft); }
-.item-sheet__price { margin: 10px 0 0; font-weight: 900; font-style: italic; font-size: 1.3rem; color: var(--red); }
 
-.add-cta { flex: 1; justify-content: space-between; padding-inline: 20px; }
-.add-cta[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
-.item-sheet__custom { margin: 14px 0 0; padding: 10px 12px; border-radius: var(--radius-s); background: var(--cream-2); font-size: 0.9rem; font-weight: 600; }
+
 .m-order-btn { justify-self: end; }
 
 /* ---------- Allergeni ---------- */
