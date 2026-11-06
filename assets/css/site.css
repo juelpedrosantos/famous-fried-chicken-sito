@@ -13,7 +13,7 @@
 }
 .s-header__logo { margin-right: auto; opacity: 0; transform: translateY(-6px); transition: opacity 240ms ease, transform 240ms var(--ease-out); }
 .s-header__logo img { height: 44px; width: auto; }
-.s-nav { display: none; gap: 26px; }
+.s-nav { display: none; gap: 20px; }
 .s-nav a {
   font-weight: 800; font-style: italic; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem;
   text-decoration: none; padding: 8px 0; position: relative;
@@ -23,7 +23,7 @@
   background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform 200ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) { .s-nav a:hover::after { transform: scaleX(1); } }
-@media (min-width: 900px) { .s-nav { display: flex; } }
+@media (min-width: 1100px) { .s-nav { display: flex; } }
 
 .s-header.is-solid { background: var(--red); box-shadow: 0 3px 0 var(--navy); }
 .s-header.is-solid .s-header__logo { opacity: 1; transform: none; }
@@ -149,15 +149,7 @@
 .sauces { justify-self: center; }
 /* Termometro del locale; le salse affiancate al tubo, sotto la testa del pollo */
 .thermo { display: flex; align-items: stretch; gap: 10px; }
-.thermo__gauge { flex: none; height: clamp(420px, 60vw, 600px); aspect-ratio: 520 / 1325; display: flex; flex-direction: column; }
-.thermo__head { width: 100%; height: auto; position: relative; z-index: 2; transform-origin: 50% 90%; }
-.thermo__body { position: relative; width: 100%; }
-.thermo__body img { width: 100%; height: auto; }
-/* "Vetro vuoto" sopra il tubo: GSAP lo ritira dal basso verso l'alto e il colore sale (site-motion.js) */
-.thermo__glass {
-  position: absolute; left: 47.7%; width: 16.6%; top: 0; height: 73.2%;
-  background: #efe9df; transform-origin: 50% 0; transform: scaleY(0);
-}
+.thermo__img { width: auto; height: clamp(420px, 60vw, 600px); flex: none; }
 .thermo__list {
   list-style: none; margin: 0; padding: 34% 0 15%; display: flex; flex-direction: column; justify-content: space-between;
   font-family: var(--font-display); text-transform: uppercase; font-size: clamp(1.05rem, 2.2vw, 1.5rem); line-height: 1; letter-spacing: 0.02em;
@@ -183,8 +175,6 @@
 /* ---------- Chi siamo ---------- */
 .story { display: grid; gap: clamp(36px, 6vw, 72px); align-items: center; }
 @media (min-width: 960px) { .story { grid-template-columns: 1fr 1.1fr; } }
-.pills { list-style: none; margin: 0 0 28px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.pills li { padding: 7px 14px; border-radius: 999px; background: var(--yellow); border: 2px solid var(--navy); font-weight: 800; font-size: 0.88rem; }
 .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .gallery img {
   width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
@@ -293,7 +283,7 @@
 .social-handle { margin: 10px 0 0; font-weight: 800; color: var(--yellow); }
 .social-grid { list-style: none; margin: 0 0 32px; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (min-width: 900px) { .social-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; } }
-.social-post { display: block; aspect-ratio: 1; overflow: hidden; border-radius: var(--radius-m); border: 3px solid var(--cream); }
+.social-post { position: relative; display: block; aspect-ratio: 1; overflow: hidden; border-radius: var(--radius-m); border: 3px solid var(--cream); }
 .social-post img { width: 100%; height: 100%; object-fit: cover; transition: transform 400ms var(--ease-out); }
 @media (hover: hover) and (pointer: fine) { .social-post:hover img { transform: scale(1.06); } }
 .social-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
@@ -302,3 +292,7 @@
 .join { border-top: 3px solid var(--navy); }
 .join__inner { text-align: center; display: flex; flex-direction: column; align-items: center; }
 .join__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.social-post__play {
+  position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; display: grid; place-items: center;
+  border-radius: 50%; background: rgba(29, 25, 64, 0.7); color: var(--cream);
+}

@@ -40,13 +40,7 @@
     const last = Math.max(sauces.length - 1, 1);
     box.innerHTML = `
       <div class="thermo">
-        <div class="thermo__gauge" role="img" aria-label="Termometro del piccante Famous">
-          <img class="thermo__head" src="assets/img/brand/termometro-testa.webp" alt="" width="520" height="435" loading="lazy">
-          <div class="thermo__body">
-            <img src="assets/img/brand/termometro-tubo.webp" alt="" width="520" height="890" loading="lazy">
-            <span class="thermo__glass" aria-hidden="true"></span>
-          </div>
-        </div>
+        <img class="thermo__img" src="assets/img/brand/termometro.webp" alt="Termometro del piccante Famous" width="520" height="1325" loading="lazy">
         <ol class="thermo__list" aria-label="Salse dalla più piccante alla più delicata">
           ${sauces.map((s, i) => `<li style="--heat:${(i / last).toFixed(3)}">${L.escapeHtml(s.name)}</li>`).join('')}
         </ol>
