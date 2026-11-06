@@ -5,7 +5,7 @@
 (function (root) {
   'use strict';
 
-  const { escapeHtml: esc } = root.FFCLogic;
+  const { escapeHtml: esc, showcaseItems } = root.FFCLogic;
   const MAX_SPICE = 4;
   const ASSET_BASE = '../';
 
@@ -57,7 +57,8 @@
   }
 
   function section(category, bestSellers) {
-    const count = category.items.length;
+    const items = showcaseItems(category.items);
+    const count = items.length;
     return `
       <section class="m-section" id="${esc(category.slug)}" data-section="${esc(category.slug)}" aria-labelledby="h-${esc(category.slug)}">
         <header class="m-section__head">
@@ -65,7 +66,7 @@
           <h2 class="display m-section__title" id="h-${esc(category.slug)}">${esc(category.name)}</h2>
           <span class="m-section__count">${count} ${count === 1 ? 'prodotto' : 'prodotti'}</span>
         </header>
-        <ul class="item-grid" role="list">${category.items.map((i) => itemCard(i, bestSellers)).join('')}</ul>
+        <ul class="item-grid" role="list">${items.map((i) => itemCard(i, bestSellers)).join('')}</ul>
       </section>`;
   }
 

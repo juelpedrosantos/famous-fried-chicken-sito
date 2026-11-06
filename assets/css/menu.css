@@ -134,7 +134,7 @@ body { padding-bottom: 96px; }
 }
 .item-card__img--empty img { width: 55%; opacity: 0.5; }
 
-.item-card__body { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 2px 4px 2px 0; }
+.item-card__body { display: flex; flex-direction: column; justify-content: center; gap: 6px; min-width: 0; padding: 2px 4px 2px 0; }
 .item-card__name {
   margin: 0; font-stretch: 78%; font-weight: 900; text-transform: uppercase;
   font-size: 1.2rem; line-height: 1.05; letter-spacing: 0.01em;

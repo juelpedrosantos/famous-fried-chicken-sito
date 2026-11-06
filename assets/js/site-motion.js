@@ -1,7 +1,8 @@
 /**
  * Animazioni del sito vetrina con GSAP + ScrollTrigger:
  * ingresso dell'hero, comparsa a cascata delle sezioni, leggera parallasse della foto,
- * nastro che accelera con la velocità di scroll (idea "ScrollVelocity" di React Bits).
+ * nastro che accelera con la velocità di scroll (idea "ScrollVelocity" di React Bits),
+ * termometro del piccante che si riempie e pollo che si anima.
  * Tutto dentro gsap.matchMedia: chi preferisce meno movimento vede i contenuti subito.
  * Se GSAP non si carica, i contenuti restano comunque visibili (classe .is-in).
  */
@@ -68,6 +69,26 @@
     });
   }
 
+  /**
+   * Termometro: arrivati alla sezione il colore sale dal bulbo verso l'alto, le salse si
+   * accendono dalla più delicata alla più piccante e, in cima, il pollo prende vita.
+   */
+  function thermometer() {
+    const glass = document.querySelector('.thermo__glass');
+    const head = document.querySelector('.thermo__head');
+    const items = Array.from(document.querySelectorAll('.thermo__list li')).reverse();
+    if (!glass || !head || !items.length) return;
+    const RISE_S = 2.4;
+    gsap.set(glass, { scaleY: 1 });
+    gsap.set(items, { autoAlpha: 0.25 });
+    gsap.timeline({ scrollTrigger: { trigger: '.thermo', start: 'top 70%', once: true } })
+      .to(glass, { scaleY: 0, duration: RISE_S, ease: 'power1.inOut' })
+      .to(items, { autoAlpha: 1, duration: 0.3, stagger: RISE_S / items.length, ease: 'power1.out' }, 0)
+      .to(head, { keyframes: { rotation: [0, -9, 9, -7, 7, -4, 4, 0] }, duration: 0.9, ease: 'none' })
+      .to(head, { scale: 1.08, duration: 0.18, yoyo: true, repeat: 1, ease: 'power2.out' }, '<')
+      .to(head, { y: -6, rotation: 2, duration: 0.7, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+  }
+
   const mm = gsap.matchMedia();
   mm.add({
     motion: '(prefers-reduced-motion: no-preference)',
@@ -83,10 +104,21 @@
       heroIntro();
       scrollReveals();
       tickerVelocity();
+      thermometer();
       if (desktop) heroParallax();
     }
   });
 
-  // Le card dei "più ordinati" arrivano dopo i dati del menu: ricalcola le posizioni a pagina caricata.
-  root.addEventListener('load', () => ScrollTrigger.refresh());
+  // Le foto si caricano man mano (lazy) e cambiano l'altezza della pagina:
+  // ricalcola i punti di attivazione, una sola volta per raffica di caricamenti.
+  const REFRESH_DELAY_MS = 200;
+  let refreshTimer = null;
+  const scheduleRefresh = () => {
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(() => ScrollTrigger.refresh(), REFRESH_DELAY_MS);
+  };
+  root.addEventListener('load', scheduleRefresh);
+  document.querySelectorAll('main img').forEach((img) => {
+    if (!img.complete) img.addEventListener('load', scheduleRefresh, { once: true });
+  });
 })(typeof self !== 'undefined' ? self : this);

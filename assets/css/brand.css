@@ -2,7 +2,8 @@
 
 /* Font ufficiali della brand identity: Obviously Narrow Bold per i titoli, Retrofunk Script per le scritte corsive.
    Anton resta solo come riserva se il file non si carica. */
-@font-face { font-family: "Obviously Narrow"; src: url("../fonts/obviously-narrow-bold.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Obviously Narrow"; src: url("../fonts/obviously-narrow-bold.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+@font-face { font-family: "Obviously Narrow"; src: url("../fonts/obviously-narrow-black.woff2") format("woff2"); font-weight: 800 900; font-display: swap; }
 @font-face { font-family: "Retrofunk"; src: url("../fonts/retrofunk.woff2") format("woff2"); font-display: swap; }
 @font-face { font-family: "Anton"; src: url("../fonts/anton.woff2") format("woff2"); size-adjust: 87.3%; font-display: swap; }
 

@@ -219,3 +219,16 @@ test('closing at midnight is stored as 24:00 and shown as 00:00', () => {
   assert.equal(L.pickupSlots(late, { day: 4, minutes: 23 * 60 }, 30, 20).at(-1), '23:30');
   assert.equal(L.displayTime('24:00'), '00:00');
 });
+
+test('showcaseItems keeps one product per kind, without piece counts, and only with a photo', () => {
+  const items = [
+    { id: 1, name: 'Tenders 4 pezzi', description: '', image: 'a.webp' },
+    { id: 2, name: 'Tenders 6 pezzi', description: '', image: 'b.webp' },
+    { id: 3, name: 'Nuggets', description: 'Bocconcini di pollo - 6 pezzi\n', image: 'c.webp' },
+    { id: 4, name: 'Senza foto', description: '', image: null },
+  ];
+  assert.deepEqual(L.showcaseItems(items).map((i) => [i.id, i.name, i.description]), [
+    [1, 'Tenders', ''],
+    [3, 'Nuggets', 'Bocconcini di pollo'],
+  ]);
+});

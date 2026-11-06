@@ -222,6 +222,24 @@
     return allItems(menu).find((i) => String(i.id) === String(id));
   }
 
+  const PIECES_IN_NAME = /\s*\d+\s*pezzi\s*$/i;
+  const PIECES_IN_DESCRIPTION = /\s*-\s*\d+\s*pezzi\s*$/i;
+
+  /**
+   * Prodotti per la vetrina: solo quelli con foto, un solo prodotto per tipo
+   * (Tenders 4/6/10 pezzi → "Tenders") e senza il numero di pezzi nel testo.
+   */
+  function showcaseItems(items) {
+    const seen = new Set();
+    return items.filter((i) => i.image).reduce((out, item) => {
+      const name = item.name.replace(PIECES_IN_NAME, '').trim();
+      if (seen.has(name.toLowerCase())) return out;
+      seen.add(name.toLowerCase());
+      const description = (item.description || '').trim().replace(PIECES_IN_DESCRIPTION, '').trim();
+      return [...out, { ...item, name, description }];
+    }, []);
+  }
+
   /** Prezzo più basso tra i prodotti disponibili (per le etichette "da € …"). */
   function minPrice(items) {
     const prices = items.filter((i) => i.available !== false).map((i) => i.price);
@@ -339,7 +357,7 @@
   return {
     formatPrice, escapeHtml, groupRule, groupCount, emptySelection, toggleChoice, stepChoice,
     validateSelection, unitPrice, describeSelection, createLine, addToCart, changeQty, cartTotal,
-    cartCount, allItems, findItem, minPrice, suggestions, romeNow, openStatus, displayTime, dayName, hoursSummary, pickupSlots,
+    cartCount, allItems, findItem, minPrice, showcaseItems, suggestions, romeNow, openStatus, displayTime, dayName, hoursSummary, pickupSlots,
     buildOrderMessage, whatsappUrl,
   };
 });

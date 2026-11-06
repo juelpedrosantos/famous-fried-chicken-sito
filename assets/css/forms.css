@@ -1,0 +1,33 @@
+/* Pagine "Lavora con noi", "Apri il tuo Famous" e "Grazie" */
+
+.f-header { background: var(--red); border-bottom: 3px solid var(--navy); color: var(--cream); }
+.f-header__inner { height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.f-back { font-weight: 800; font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.85rem; text-decoration: none; }
+.f-logo { height: 44px; width: auto; }
+
+.f-main { padding-block: clamp(32px, 6vw, 64px); }
+.f-card {
+  max-width: 640px; margin: 0 auto; padding: clamp(24px, 5vw, 40px);
+  background: var(--cream); border: 3px solid var(--navy); border-radius: var(--radius-l);
+  box-shadow: var(--shadow-sticker-lg);
+}
+.f-card--center { text-align: center; }
+.f-title { font-size: clamp(2.6rem, 9vw, 4rem); font-weight: 900; }
+.f-title .script { font-weight: 400; color: var(--red); text-shadow: 3px 3px 0 var(--navy); }
+.f-intro { margin: 12px 0 24px; font-size: 1.05rem; }
+
+.f-form { display: grid; gap: 16px; }
+.f-field { display: grid; gap: 6px; }
+.f-label { font-weight: 800; font-size: 0.9rem; }
+.f-input {
+  width: 100%; min-height: 48px; padding: 10px 14px;
+  font: inherit; color: var(--navy); background: #fff;
+  border: 2px solid var(--navy); border-radius: 12px;
+}
+textarea.f-input { resize: vertical; }
+.f-input:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.f-check { display: flex; gap: 10px; align-items: flex-start; font-size: 0.88rem; }
+.f-check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--red); flex: none; }
+.f-submit { justify-self: start; }
+.f-note { margin: 0; font-size: 0.8rem; color: var(--navy-soft); }
+.f-honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }

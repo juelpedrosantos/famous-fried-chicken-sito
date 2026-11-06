@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Apri il tuo Famous | Famous Fried Chicken Latina</title>
+  <meta name="description" content="Porta Famous Fried Chicken nella tua città: richiedi informazioni.">
+  <meta name="theme-color" content="#aa191e">
+  <link rel="icon" href="../assets/img/brand/mascot.png">
+  <link rel="stylesheet" href="../assets/css/brand.css">
+  <link rel="stylesheet" href="../assets/css/forms.css">
+</head>
+<body class="tray-pattern">
+  <header class="f-header">
+    <div class="container f-header__inner">
+      <a class="f-back" href="../index.html">← Home</a>
+      <a href="../index.html" aria-label="Famous Fried Chicken, torna alla home"><img class="f-logo" src="../assets/img/brand/wordmark.png" alt="" width="900" height="357"></a>
+    </div>
+  </header>
+  <main class="container f-main">
+    <section class="f-card">
+      <h1 class="display f-title">Apri il tuo <span class="script script--brand accent">Famous</span></h1>
+      <p class="f-intro">Vuoi portare Famous Fried Chicken nella tua città? Lasciaci i tuoi contatti e qualche dettaglio sul progetto.</p>
+      <form class="f-form" action="https://formsubmit.co/info@famouslatina.com" method="POST">
+        <input type="hidden" name="_subject" value="Nuova richiesta - Apri il tuo Famous">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://famousfriedchicken.it/grazie/">
+        <input type="text" name="_honey" class="f-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="f-field"><span class="f-label">Nome e cognome <span aria-hidden="true">*</span></span>
+          <input class="f-input" type="text" name="Nome" autocomplete="name" required></label>
+        <label class="f-field"><span class="f-label">Email <span aria-hidden="true">*</span></span>
+          <input class="f-input" type="email" name="Email" autocomplete="email" required></label>
+        <label class="f-field"><span class="f-label">Telefono <span aria-hidden="true">*</span></span>
+          <input class="f-input" type="tel" name="Telefono" autocomplete="tel" required></label>
+        <label class="f-field"><span class="f-label">Città in cui vorresti aprire <span aria-hidden="true">*</span></span>
+          <input class="f-input" type="text" name="Citta" required></label>
+        <label class="f-field"><span class="f-label">Hai già un locale? <span aria-hidden="true">*</span></span>
+          <select class="f-input" name="Locale" required><option value="">Seleziona</option><option>Sì</option><option>No</option><option>Sto valutando</option></select></label>
+        <label class="f-field"><span class="f-label">Budget di investimento</span>
+          <select class="f-input" name="Budget"><option value="">Seleziona</option><option>Fino a 50.000 €</option><option>50.000 – 100.000 €</option><option>100.000 – 200.000 €</option><option>Oltre 200.000 €</option></select></label>
+        <label class="f-field"><span class="f-label">Messaggio</span>
+          <textarea class="f-input" name="Messaggio" rows="4" maxlength="2000"></textarea></label>
+        <label class="f-check"><input type="checkbox" name="Consenso privacy" value="Sì" required>
+          <span>Acconsento al trattamento dei miei dati personali per essere ricontattato da Famous Fried Chicken (STAR S.R.L.) in merito a questa richiesta. <span aria-hidden="true">*</span></span></label>
+        <button class="btn f-submit" type="submit">Invia la richiesta</button>
+        <p class="f-note">I campi con * sono obbligatori. La richiesta arriva direttamente al locale.</p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

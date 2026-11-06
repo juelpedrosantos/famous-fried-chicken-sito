@@ -40,7 +40,13 @@
     const last = Math.max(sauces.length - 1, 1);
     box.innerHTML = `
       <div class="thermo">
-        <img class="thermo__img" src="assets/img/brand/termometro.webp" alt="Termometro del piccante Famous" width="520" height="1325" loading="lazy">
+        <div class="thermo__gauge" role="img" aria-label="Termometro del piccante Famous">
+          <img class="thermo__head" src="assets/img/brand/termometro-testa.webp" alt="" width="520" height="435" loading="lazy">
+          <div class="thermo__body">
+            <img src="assets/img/brand/termometro-tubo.webp" alt="" width="520" height="890" loading="lazy">
+            <span class="thermo__glass" aria-hidden="true"></span>
+          </div>
+        </div>
         <ol class="thermo__list" aria-label="Salse dalla più piccante alla più delicata">
           ${sauces.map((s, i) => `<li style="--heat:${(i / last).toFixed(3)}">${L.escapeHtml(s.name)}</li>`).join('')}
         </ol>
@@ -49,23 +55,36 @@
     $$('[data-sauce-count], [data-sauce-pill]').forEach((el) => { el.textContent = count; });
   }
 
+  /**
+   * "I più amati": prodotti scelti dal locale. La foto arriva dal menu Qromo (per id);
+   * nome e descrizione sono quelli da mostrare in vetrina, senza numero di pezzi.
+   */
+  const FAVOURITES = [
+    { id: 828474, name: 'Wings', description: 'Ali di pollo croccanti, glassate con la salsa che preferisci.' },
+    { id: 820881, name: 'Bacon Royal', description: 'Bun brioche, pollo fritto croccante, american cheese, bacon e salsa crispy.' },
+    { id: 828528, name: 'Tenders glassati Spicy', description: 'Filetti di pollo croccanti con la nostra glassatura Spicy.' },
+    { id: 820896, name: 'Patatine Cheddar e Bacon', description: 'Patatine fritte con cheddar fuso homemade e bacon croccante.' },
+  ];
+
   function fillBestSellers() {
     const list = $('[data-best-sellers]');
-    const items = (menu.bestSellers || []).map((id) => L.findItem(menu, id)).filter((i) => i && i.available);
-    if (!list || !items.length) return;
-    list.innerHTML = items.map((item, index) => `
+    if (!list) return;
+    list.innerHTML = FAVOURITES.map((fav) => {
+      const item = L.findItem(menu, fav.id);
+      const image = item && item.image;
+      return `
       <li class="reveal">
         <article class="best-card">
           <span class="best-card__media">
-            ${item.image ? `<img src="${L.escapeHtml(item.image)}" alt="${L.escapeHtml(item.name)}" width="640" height="640" loading="lazy">` : ''}
-            <span class="best-card__rank" aria-hidden="true">${index + 1}</span>
+            ${image ? `<img src="${L.escapeHtml(image)}" alt="${L.escapeHtml(fav.name)}" width="640" height="640" loading="lazy">` : ''}
           </span>
           <span class="best-card__body">
-            <span class="best-card__name">${L.escapeHtml(item.name)}</span>
-            ${item.description ? `<span class="best-card__desc">${L.escapeHtml(item.description)}</span>` : ''}
+            <span class="best-card__name">${L.escapeHtml(fav.name)}</span>
+            <span class="best-card__desc">${L.escapeHtml(fav.description)}</span>
           </span>
         </article>
-      </li>`).join('');
+      </li>`;
+    }).join('');
   }
 
   function fillHours() {
