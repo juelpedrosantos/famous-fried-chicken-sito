@@ -24,7 +24,6 @@
     return gsap.timeline({ defaults: { ease: 'power3.out' } })
       .from('.hero__logo img', { autoAlpha: 0, scale: 0.86, rotation: -4, duration: 0.8 })
       .from('.hero__claim', { autoAlpha: 0, y: 16, duration: 0.6 }, '-=0.45')
-      .from('.hero__sub', { autoAlpha: 0, y: 12, duration: 0.5 }, '-=0.35')
       .from('.hero__actions > *', { autoAlpha: 0, y: 14, duration: 0.45, stagger: 0.08 }, '-=0.3')
       .from('.hero__facts li', { autoAlpha: 0, y: 10, duration: 0.4, stagger: 0.06 }, '-=0.25');
   }

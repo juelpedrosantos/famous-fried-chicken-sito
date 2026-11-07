@@ -40,7 +40,11 @@
     const last = Math.max(sauces.length - 1, 1);
     box.innerHTML = `
       <div class="thermo">
-        <img class="thermo__img" src="assets/img/brand/termometro.webp" alt="Termometro del piccante Famous" width="520" height="1325" loading="lazy">
+        <video class="thermo__img" data-thermo-video muted playsinline preload="metadata" width="340" height="638"
+          poster="assets/img/brand/termometro-statico.webp" aria-label="Termometro del piccante Famous">
+          <source src="assets/video/termometro.mov" type='video/quicktime; codecs="hvc1"'>
+          <source src="assets/video/termometro.webm" type="video/webm">
+        </video>
         <ol class="thermo__list" aria-label="Salse dalla più piccante alla più delicata">
           ${sauces.map((s, i) => `<li style="--heat:${(i / last).toFixed(3)}">${L.escapeHtml(s.name)}</li>`).join('')}
         </ol>
@@ -122,6 +126,28 @@
     }
   }
 
+  /**
+   * Termometro animato (video con trasparenza): parte quando la sezione è visibile,
+   * poi ripete solo il finale con il pollo in fiamme invece di ricominciare da zero.
+   */
+  const THERMO_LOOP_FROM_S = 5;
+
+  function setupThermoVideo() {
+    const video = $('[data-thermo-video]');
+    if (!video) return;
+    if (root.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // resta il fotogramma finale
+    video.addEventListener('ended', () => {
+      video.currentTime = THERMO_LOOP_FROM_S;
+      video.play().catch(() => {});
+    });
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      video.play().catch(() => {});
+      observer.disconnect();
+    }, { threshold: 0.4 });
+    observer.observe(video);
+  }
+
   /** Popup della Fidelity Card: a ogni nuova apertura del sito, una volta per visita. */
   function setupPromo() {
     const promo = $('[data-promo]');
@@ -140,5 +166,6 @@
   }
   $$('[data-year]').forEach((el) => { el.textContent = String(new Date().getFullYear()); });
   setupHeader();
+  setupThermoVideo();
   setupPromo();
 })(typeof self !== 'undefined' ? self : this);
