@@ -1,6 +1,6 @@
 /* Generato da tools/build_menu_data.py: non modificare a mano, rilancia lo script. */
 window.FFC_MENU = {
-  "updatedAt": "2026-11-06",
+  "updatedAt": "2026-11-07",
   "source": "https://famousfriedchicken.qromo.it/",
   "business": {
     "name": "Famous Fried Chicken",
