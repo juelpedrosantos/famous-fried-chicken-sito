@@ -47,7 +47,7 @@
 .hero__logo { margin: 0; width: min(540px, 86vw, 60svh); }
 .hero__logo img { width: 100%; filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45)); }
 .hero__claim {
-  margin: 14px 0 0; font-size: clamp(2rem, 6.5vw, 3.4rem); line-height: 1.1;
+  margin: 14px 0 32px; font-size: clamp(2rem, 6.5vw, 3.4rem); line-height: 1.2; padding-bottom: 0.1em;
   color: var(--yellow); text-shadow: 3px 3px 0 var(--navy);
   transform: rotate(-3deg);
 }

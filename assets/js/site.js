@@ -40,7 +40,7 @@
     const last = Math.max(sauces.length - 1, 1);
     box.innerHTML = `
       <div class="thermo">
-        <video class="thermo__img" data-thermo-video muted playsinline preload="metadata" width="340" height="638"
+        <video class="thermo__img" data-thermo-video muted playsinline preload="metadata" width="680" height="1276"
           poster="assets/img/brand/termometro-statico.webp" aria-label="Termometro del piccante Famous">
           <source src="assets/video/termometro.mov" type='video/quicktime; codecs="hvc1"'>
           <source src="assets/video/termometro.webm" type="video/webm">
