@@ -42,8 +42,7 @@
       <div class="thermo">
         <video class="thermo__img" data-thermo-video muted playsinline preload="metadata" width="680" height="1276"
           poster="assets/img/brand/termometro-statico.webp" aria-label="Termometro del piccante Famous">
-          <source src="assets/video/termometro.mov" type='video/quicktime; codecs="hvc1"'>
-          <source src="assets/video/termometro.webm" type="video/webm">
+          <source src="assets/video/termometro.mp4" type="video/mp4">
         </video>
         <ol class="thermo__list" aria-label="Salse dalla più piccante alla più delicata">
           ${sauces.map((s, i) => `<li style="--heat:${(i / last).toFixed(3)}">${L.escapeHtml(s.name)}</li>`).join('')}
@@ -127,7 +126,7 @@
   }
 
   /**
-   * Termometro animato (video con trasparenza): parte quando la sezione è visibile,
+   * Termometro animato (video già sul blu della sezione, uguale in ogni browser): parte quando è visibile,
    * poi ripete solo il finale con il pollo in fiamme invece di ricominciare da zero.
    */
   const THERMO_LOOP_FROM_S = 5;

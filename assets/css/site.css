@@ -154,7 +154,15 @@
   --thermo-h: min(600px, 100cqw / 0.9);
   display: flex; align-items: stretch; justify-content: center; gap: calc(var(--thermo-h) * 0.017);
 }
-.thermo__img { width: auto; height: var(--thermo-h); aspect-ratio: 340 / 638; flex: none; }
+.thermo__img {
+  width: auto; height: var(--thermo-h); aspect-ratio: 340 / 638; flex: none;
+  background: var(--navy);
+  /* bordi sfumati: il blu del video si fonde con quello della sezione senza far vedere il riquadro */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent);
+  mask-composite: intersect;
+}
 .thermo__list {
   list-style: none; margin: 0 0 0 calc(var(--thermo-h) * -0.06);
   /* le salse occupano l'altezza del tubo, sotto la testa del pollo e sopra il bulbo */
