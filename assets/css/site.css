@@ -146,16 +146,21 @@
 /* ---------- Salse ---------- */
 .drip { display: grid; gap: clamp(32px, 6vw, 72px); align-items: center; }
 @media (min-width: 900px) { .drip { grid-template-columns: 1fr 1fr; } }
-.sauces { justify-self: center; }
 /* Termometro del locale; le salse affiancate al tubo, sotto la testa del pollo */
-.thermo { --thermo-h: clamp(420px, 60vw, 600px); display: flex; align-items: stretch; gap: 10px; }
+/* Termometro + salse come un'unica composizione: tutto è proporzionale all'altezza
+   del termometro, che si adatta alla larghezza disponibile (stesso aspetto su telefono e PC). */
+.sauces { container-type: inline-size; justify-self: stretch; }
+.thermo {
+  --thermo-h: min(600px, 100cqw / 0.9);
+  display: flex; align-items: stretch; justify-content: center; gap: calc(var(--thermo-h) * 0.017);
+}
 .thermo__img { width: auto; height: var(--thermo-h); aspect-ratio: 340 / 638; flex: none; }
 .thermo__list {
   list-style: none; margin: 0 0 0 calc(var(--thermo-h) * -0.06);
   /* le salse occupano l'altezza del tubo, sotto la testa del pollo e sopra il bulbo */
   padding: calc(var(--thermo-h) * 0.36) 0 calc(var(--thermo-h) * 0.26); display: flex; flex-direction: column; justify-content: space-between;
-  font-family: var(--font-display); text-transform: uppercase; font-size: clamp(1.05rem, 2.2vw, 1.5rem); line-height: 1; letter-spacing: 0.02em;
-  text-shadow: 2px 2px 0 var(--navy-ink);
+  font-family: var(--font-display); text-transform: uppercase; font-size: calc(var(--thermo-h) * 0.04); line-height: 1; letter-spacing: 0.02em;
+  white-space: nowrap; text-shadow: calc(var(--thermo-h) * 0.0033) calc(var(--thermo-h) * 0.0033) 0 var(--navy-ink);
 }
 /* --heat: 0 = più piccante (rosso), 1 = più delicata (verde) */
 .thermo__list li { color: color-mix(in srgb, #ff4b2b calc((1 - var(--heat)) * 100%), #ffe600); }
