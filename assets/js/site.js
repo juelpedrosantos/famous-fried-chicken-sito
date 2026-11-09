@@ -130,11 +130,14 @@
    * poi ripete solo il finale con il pollo in fiamme invece di ricominciare da zero.
    */
   const THERMO_LOOP_FROM_S = 5;
+  const THERMO_SPEED = 1.5; // il video originale è un po' lento
 
   function setupThermoVideo() {
     const video = $('[data-thermo-video]');
     if (!video) return;
     if (root.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // resta il fotogramma finale
+    video.defaultPlaybackRate = THERMO_SPEED;
+    video.playbackRate = THERMO_SPEED;
     video.addEventListener('ended', () => {
       video.currentTime = THERMO_LOOP_FROM_S;
       video.play().catch(() => {});
