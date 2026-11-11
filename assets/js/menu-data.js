@@ -58,177 +58,10 @@ window.FFC_MENU = {
   "bestSellers": [
     820897,
     820898,
-    880801,
-    820881
+    820881,
+    828529
   ],
   "categories": [
-    {
-      "id": 117513,
-      "name": "HALLOWEEN EDITION",
-      "slug": "halloween-edition",
-      "image": "assets/img/menu/category-117513.webp",
-      "items": [
-        {
-          "id": 880801,
-          "name": "Combo Menù Maxi HALLOWEEN EDITION",
-          "description": "The Monster chickenburger + waffle fries + bibita + 4 Wings BBQ",
-          "price": 1790,
-          "image": "assets/img/menu/item-880801.webp",
-          "available": true,
-          "spice": 0,
-          "tags": [],
-          "pairsWith": [],
-          "options": [
-            {
-              "id": 199100,
-              "name": "Seleziona le Wings! 🍗",
-              "min": 2,
-              "max": 2,
-              "multi": false,
-              "choices": [
-                {
-                  "id": 1693273,
-                  "name": "Wings 4 pezzi",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693274,
-                  "name": "Smoked BBQ - Glazed",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                }
-              ]
-            },
-            {
-              "id": 199101,
-              "name": "Bibita",
-              "min": 1,
-              "max": 1,
-              "multi": false,
-              "choices": [
-                {
-                  "id": 1693275,
-                  "name": "Acqua Naturale",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693276,
-                  "name": "Acqua Frizzante",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693277,
-                  "name": "Coca Cola",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693278,
-                  "name": "Coca Cola Zero",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693279,
-                  "name": "Coca Cola Zero Zero",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693280,
-                  "name": "Fanta",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693281,
-                  "name": "Sprite",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693282,
-                  "name": "The pesca",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693283,
-                  "name": "The limone",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693284,
-                  "name": "Heineken",
-                  "price": 100,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693285,
-                  "name": "Bud",
-                  "price": 100,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693286,
-                  "name": "Ichnusa",
-                  "price": 100,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693287,
-                  "name": "Tennent's",
-                  "price": 100,
-                  "spice": 0,
-                  "available": true
-                },
-                {
-                  "id": 1693288,
-                  "name": "Estrella",
-                  "price": 100,
-                  "spice": 0,
-                  "available": true
-                }
-              ]
-            },
-            {
-              "id": 199102,
-              "name": "Fries",
-              "min": 1,
-              "max": 1,
-              "multi": false,
-              "choices": [
-                {
-                  "id": 1693289,
-                  "name": "Waffle Fries",
-                  "price": 0,
-                  "spice": 0,
-                  "available": true
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": 110624,
       "name": "Combo Menù",
@@ -246,9 +79,9 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             820898,
-            880801,
             828474,
-            828529
+            828529,
+            827836
           ],
           "options": [
             {
@@ -674,10 +507,10 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            880801,
             828474,
             827836,
-            820899
+            820899,
+            828529
           ],
           "options": [
             {
@@ -3239,7 +3072,6 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            880801,
             828530
           ],
           "options": [
@@ -3271,8 +3103,7 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            837718,
-            880801
+            837718
           ],
           "options": [
             {
@@ -3312,9 +3143,9 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             820897,
-            880801,
             828529,
-            820898
+            820898,
+            828463
           ],
           "options": [
             {
@@ -3671,7 +3502,6 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             828530,
-            880801,
             828529
           ],
           "options": []
@@ -3686,8 +3516,7 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            828530,
-            880801
+            828530
           ],
           "options": []
         },
@@ -3715,9 +3544,7 @@ window.FFC_MENU = {
           "available": true,
           "spice": 0,
           "tags": [],
-          "pairsWith": [
-            880801
-          ],
+          "pairsWith": [],
           "options": []
         },
         {
@@ -3816,7 +3643,6 @@ window.FFC_MENU = {
           "pairsWith": [
             828530,
             828529,
-            880801,
             828474
           ],
           "options": []
