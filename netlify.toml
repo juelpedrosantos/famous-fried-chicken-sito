@@ -1,4 +1,11 @@
-# Sito statico: nessuna build, si pubblica la cartella così com'è.
+# Il sito ufficiale è su GitHub Pages (famousfriedchicken.it).
+# La vecchia copia su Netlify rimanda ogni pagina al dominio ufficiale.
 [build]
   publish = "."
   command = ""
+
+[[redirects]]
+  from = "/*"
+  to = "https://famousfriedchicken.it/:splat"
+  status = 301
+  force = true
