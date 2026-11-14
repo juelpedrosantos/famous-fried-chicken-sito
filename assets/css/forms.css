@@ -31,3 +31,10 @@ textarea.f-input { resize: vertical; }
 .f-submit { justify-self: start; }
 .f-note { margin: 0; font-size: 0.8rem; color: var(--navy-soft); }
 .f-honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+/* Pagina privacy */
+.f-legal { max-width: 760px; }
+.f-legal h2 { margin: 28px 0 8px; font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: 1.35rem; }
+.f-legal p, .f-legal li { line-height: 1.6; }
+.f-legal ul { padding-left: 1.2em; }
+.f-legal a { color: var(--red); font-weight: 700; }
