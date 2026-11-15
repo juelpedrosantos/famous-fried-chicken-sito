@@ -57,7 +57,7 @@ window.FFC_MENU = {
   },
   "bestSellers": [
     820897,
-    820898,
+    820881,
     820885,
     828529
   ],
@@ -81,7 +81,7 @@ window.FFC_MENU = {
             820898,
             828474,
             828529,
-            828528
+            820904
           ],
           "options": [
             {
@@ -1371,9 +1371,9 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             820897,
-            820898,
             820881,
-            820885
+            828474,
+            820898
           ],
           "options": [
             {
@@ -1727,8 +1727,8 @@ window.FFC_MENU = {
           "pairsWith": [
             820897,
             820904,
-            820898,
-            828529
+            820896,
+            820898
           ],
           "options": [
             {
@@ -2842,7 +2842,9 @@ window.FFC_MENU = {
           "available": true,
           "spice": 0,
           "tags": [],
-          "pairsWith": [],
+          "pairsWith": [
+            828528
+          ],
           "options": [
             {
               "id": 176562,
@@ -3071,9 +3073,7 @@ window.FFC_MENU = {
           "available": true,
           "spice": 0,
           "tags": [],
-          "pairsWith": [
-            828530
-          ],
+          "pairsWith": [],
           "options": [
             {
               "id": 176568,
@@ -3144,8 +3144,8 @@ window.FFC_MENU = {
           "pairsWith": [
             820897,
             828529,
-            820893,
-            820898
+            820898,
+            820893
           ],
           "options": [
             {
@@ -3279,10 +3279,10 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            820897,
             828529,
+            828463,
             828528,
-            820893
+            820897
           ],
           "options": []
         },
@@ -3297,8 +3297,8 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             820897,
-            828530,
-            828529
+            828529,
+            828530
           ],
           "options": []
         },
@@ -3440,8 +3440,10 @@ window.FFC_MENU = {
           "spice": 2,
           "tags": [],
           "pairsWith": [
+            836086,
             828530,
-            827832
+            827832,
+            828463
           ],
           "options": []
         },
@@ -3503,8 +3505,6 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            828529,
-            828530,
             828528
           ],
           "options": []
@@ -3519,7 +3519,9 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            828530
+            828530,
+            836086,
+            828528
           ],
           "options": []
         },
@@ -3533,7 +3535,6 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            828530,
             828463
           ],
           "options": []
@@ -3584,7 +3585,8 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            828529
+            828529,
+            828474
           ],
           "options": []
         },
@@ -3618,7 +3620,9 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            828529
+            828474,
+            828529,
+            828528
           ],
           "options": []
         },
@@ -3631,7 +3635,10 @@ window.FFC_MENU = {
           "available": true,
           "spice": 0,
           "tags": [],
-          "pairsWith": [],
+          "pairsWith": [
+            828528,
+            828474
+          ],
           "options": []
         },
         {
@@ -3644,10 +3651,8 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            828530,
             828529,
-            828528,
-            827836
+            828528
           ],
           "options": []
         },
