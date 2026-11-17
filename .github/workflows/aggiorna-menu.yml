@@ -1,6 +1,6 @@
-# Ogni ora riscarica il menu da Qromo; se è cambiato salva la nuova versione
-# e Netlify ripubblica il sito da solo.
-name: Aggiorna menu da Qromo
+# Ogni ora riscarica il menu da Qromo e gli ultimi post Instagram (feed Behold);
+# se qualcosa è cambiato salva la nuova versione e GitHub Pages ripubblica il sito da solo.
+name: Aggiorna menu e post Instagram
 
 on:
   schedule:
@@ -22,15 +22,18 @@ jobs:
         run: sudo apt-get update -qq && sudo apt-get install -y -qq webp
       - name: Scarica il menu
         run: python3 tools/build_menu_data.py
+      - name: Scarica gli ultimi post Instagram (Behold)
+        # Se il feed non risponde il sito resta com'è e il menu si aggiorna lo stesso
+        run: python3 tools/build_instagram.py || echo "Instagram non aggiornato in questo giro"
       - name: Test della logica
         run: node --test tests/menu-logic.test.js
       - name: Salva se cambiato
         run: |
-          if [ -n "$(git status --porcelain assets)" ]; then
+          if [ -n "$(git status --porcelain assets index.html)" ]; then
             git config user.name "menu-bot"
             git config user.email "menu-bot@users.noreply.github.com"
-            git add assets
-            git commit -m "chore: aggiorna menu da Qromo"
+            git add assets index.html
+            git commit -m "chore: aggiorna menu e post Instagram"
             git push
           else
             echo "Menu invariato"
