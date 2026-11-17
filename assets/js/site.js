@@ -42,7 +42,7 @@
       <div class="thermo">
         <video class="thermo__img" data-thermo-video muted playsinline preload="metadata" width="680" height="1276"
           poster="assets/img/brand/termometro-statico.webp" aria-label="Termometro del piccante Famous">
-          <source src="assets/video/termometro.mp4" type="video/mp4">
+          <source src="assets/video/termometro-v2.mp4" type="video/mp4">
         </video>
         <ol class="thermo__list" aria-label="Salse dalla più piccante alla più delicata">
           ${sauces.map((s, i) => `<li style="--heat:${(i / last).toFixed(3)}">${L.escapeHtml(s.name)}</li>`).join('')}
