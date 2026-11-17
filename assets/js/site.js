@@ -138,6 +138,7 @@
   const THERMO_LOOP_FROM_S = 5;
   const THERMO_SPEED = 1.5; // il video originale è un po' lento
   const THERMO_SAMPLE = { x: 12, y: 12, size: 24 }; // angolo del video che contiene solo il fondo blu
+  const THERMO_MAX_DRIFT = 24; // oltre questa differenza la misura non è il fondo (fotogramma vuoto o non pronto)
 
   function parseRgb(css) {
     const m = String(css).match(/\d+(\.\d+)?/g);
@@ -189,10 +190,14 @@
           if (!fix) {
             ctx.drawImage(video, 0, 0, w, h);
             const { x, y, size } = THERMO_SAMPLE;
-            fix = colorFix(averageRgb(ctx.getImageData(x, y, size, size).data), target);
-            media.classList.add('is-canvas');
+            const sampled = averageRgb(ctx.getImageData(x, y, size, size).data);
+            // Si calibra solo su un fotogramma vero: il fondo letto deve essere vicino al blu della sezione.
+            if (sampled.every((v, k) => Math.abs(v - target[k]) <= THERMO_MAX_DRIFT)) {
+              fix = colorFix(sampled, target);
+              media.classList.add('is-canvas');
+            }
           }
-          drawCorrected(ctx, video, fix, w, h);
+          if (fix) drawCorrected(ctx, video, fix, w, h);
         } catch (err) {
           // Canvas non disponibile (es. restrizioni del browser): resta il video normale.
           media.classList.remove('is-canvas');
