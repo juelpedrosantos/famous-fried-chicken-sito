@@ -40,10 +40,13 @@
     const last = Math.max(sauces.length - 1, 1);
     box.innerHTML = `
       <div class="thermo">
-        <video class="thermo__img" data-thermo-video muted playsinline preload="metadata" width="680" height="1276"
-          poster="assets/img/brand/termometro-statico.webp" aria-label="Termometro del piccante Famous">
-          <source src="assets/video/termometro-v2.mp4" type="video/mp4">
-        </video>
+        <div class="thermo__img thermo__media" data-thermo-media role="img" aria-label="Termometro del piccante Famous">
+          <video class="thermo__video" data-thermo-video muted playsinline preload="metadata" width="680" height="1276"
+            poster="assets/img/brand/termometro-statico.webp" aria-hidden="true">
+            <source src="assets/video/termometro-v2.mp4" type="video/mp4">
+          </video>
+          <canvas class="thermo__canvas" data-thermo-canvas width="680" height="1276" aria-hidden="true"></canvas>
+        </div>
         <ol class="thermo__list" aria-label="Salse dalla più piccante alla più delicata">
           ${sauces.map((s, i) => `<li style="--heat:${(i / last).toFixed(3)}">${L.escapeHtml(s.name)}</li>`).join('')}
         </ol>
@@ -126,15 +129,90 @@
   }
 
   /**
-   * Termometro animato (video già sul blu della sezione, uguale in ogni browser): parte quando è visibile,
-   * poi ripete solo il finale con il pollo in fiamme invece di ricominciare da zero.
+   * Termometro animato: parte quando è visibile, poi ripete solo il finale con il pollo in fiamme.
+   * Ogni browser e ogni schermo colora i video in modo un po' diverso dal resto della pagina, e il fondo blu
+   * del video formava un riquadro. Per questo il video viene ridisegnato su un canvas (colorato come la pagina)
+   * correggendo il blu del fondo perché sia identico a quello della sezione.
+   * Se qualcosa non va, resta visibile il video normale.
    */
   const THERMO_LOOP_FROM_S = 5;
   const THERMO_SPEED = 1.5; // il video originale è un po' lento
+  const THERMO_SAMPLE = { x: 12, y: 12, size: 24 }; // angolo del video che contiene solo il fondo blu
+
+  function parseRgb(css) {
+    const m = String(css).match(/\d+(\.\d+)?/g);
+    return m && m.length >= 3 ? m.slice(0, 3).map(Number) : null;
+  }
+
+  function averageRgb(data) {
+    const sum = [0, 0, 0];
+    for (let i = 0; i < data.length; i += 4) { sum[0] += data[i]; sum[1] += data[i + 1]; sum[2] += data[i + 2]; }
+    const n = data.length / 4;
+    return sum.map((v) => v / n);
+  }
+
+  /** Correzione per canale: prima moltiplica (se il video è più chiaro), poi somma (se è più scuro). */
+  function colorFix(sampled, target) {
+    const mul = sampled.map((v, k) => (v > 0 ? Math.min(1, target[k] / v) : 1));
+    const add = sampled.map((v, k) => Math.max(0, target[k] - v * mul[k]));
+    return { mul, add };
+  }
+
+  function drawCorrected(ctx, video, fix, w, h) {
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.drawImage(video, 0, 0, w, h);
+    if (fix.mul.some((m) => m < 1)) {
+      ctx.globalCompositeOperation = 'multiply';
+      ctx.fillStyle = `rgb(${fix.mul.map((m) => Math.round(m * 255)).join(',')})`;
+      ctx.fillRect(0, 0, w, h);
+    }
+    if (fix.add.some((a) => a > 0.5)) {
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.fillStyle = `rgb(${fix.add.map((a) => Math.round(a)).join(',')})`;
+      ctx.fillRect(0, 0, w, h);
+    }
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  function mirrorOnCanvas(video, canvas, media) {
+    const ctx = canvas.getContext('2d', { willReadFrequently: false });
+    const target = parseRgb(getComputedStyle(media).backgroundColor);
+    if (!ctx || !target) return;
+    const w = canvas.width;
+    const h = canvas.height;
+    let fix = null;
+    let visible = true;
+
+    const frame = () => {
+      if (visible && video.readyState >= 2) {
+        try {
+          if (!fix) {
+            ctx.drawImage(video, 0, 0, w, h);
+            const { x, y, size } = THERMO_SAMPLE;
+            fix = colorFix(averageRgb(ctx.getImageData(x, y, size, size).data), target);
+            media.classList.add('is-canvas');
+          }
+          drawCorrected(ctx, video, fix, w, h);
+        } catch (err) {
+          // Canvas non disponibile (es. restrizioni del browser): resta il video normale.
+          media.classList.remove('is-canvas');
+          console.warn('Termometro: uso il video senza correzione del colore', err);
+          return;
+        }
+      }
+      if (typeof video.requestVideoFrameCallback === 'function') video.requestVideoFrameCallback(frame);
+      else root.requestAnimationFrame(frame);
+    };
+
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(media);
+    frame();
+  }
 
   function setupThermoVideo() {
     const video = $('[data-thermo-video]');
-    if (!video) return;
+    const canvas = $('[data-thermo-canvas]');
+    const media = $('[data-thermo-media]');
+    if (!video || !canvas || !media) return;
     if (root.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // resta il fotogramma finale
     video.defaultPlaybackRate = THERMO_SPEED;
     video.playbackRate = THERMO_SPEED;
@@ -144,10 +222,10 @@
     });
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
-      video.play().catch(() => {});
+      video.play().then(() => mirrorOnCanvas(video, canvas, media)).catch(() => {});
       observer.disconnect();
     }, { threshold: 0.4 });
-    observer.observe(video);
+    observer.observe(media);
   }
 
   /** Popup della Fidelity Card: a ogni nuova apertura del sito, una volta per visita. */

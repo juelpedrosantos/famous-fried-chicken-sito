@@ -154,6 +154,11 @@
   --thermo-h: min(600px, 100cqw / 0.9);
   display: flex; align-items: stretch; justify-content: center; gap: calc(var(--thermo-h) * 0.017);
 }
+.thermo__media { position: relative; overflow: hidden; }
+.thermo__video, .thermo__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* Il canvas copre il video (che continua a girare sotto) solo dopo la correzione del colore */
+.thermo__canvas { opacity: 0; }
+.thermo__media.is-canvas .thermo__canvas { opacity: 1; }
 .thermo__img {
   width: auto; height: var(--thermo-h); aspect-ratio: 340 / 638; flex: none;
   background: var(--navy);
