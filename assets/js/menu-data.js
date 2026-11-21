@@ -58,7 +58,7 @@ window.FFC_MENU = {
   "bestSellers": [
     820897,
     820898,
-    827836,
+    828529,
     820881
   ],
   "categories": [
@@ -1372,8 +1372,8 @@ window.FFC_MENU = {
           "pairsWith": [
             820897,
             820881,
-            820885,
-            828474
+            820898,
+            820885
           ],
           "options": [
             {
@@ -1728,7 +1728,7 @@ window.FFC_MENU = {
             820897,
             820898,
             820885,
-            828528
+            828529
           ],
           "options": [
             {
@@ -2079,9 +2079,7 @@ window.FFC_MENU = {
           "available": true,
           "spice": 0,
           "tags": [],
-          "pairsWith": [
-            820897
-          ],
+          "pairsWith": [],
           "options": [
             {
               "id": 175183,
@@ -3295,8 +3293,8 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            820897,
-            828529
+            828529,
+            820897
           ],
           "options": []
         },
@@ -3439,9 +3437,8 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             836086,
-            828530,
             827832,
-            828463
+            828530
           ],
           "options": []
         },
@@ -3534,8 +3531,8 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             828463,
-            837718,
             828528,
+            837718,
             836086
           ],
           "options": []
@@ -3624,7 +3621,7 @@ window.FFC_MENU = {
           "pairsWith": [
             828530,
             828529,
-            828528
+            828474
           ],
           "options": []
         },
@@ -3637,7 +3634,9 @@ window.FFC_MENU = {
           "available": true,
           "spice": 0,
           "tags": [],
-          "pairsWith": [],
+          "pairsWith": [
+            828528
+          ],
           "options": []
         },
         {
@@ -3662,8 +3661,9 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
+            828529,
             828530,
-            828529
+            827836
           ],
           "options": []
         },
