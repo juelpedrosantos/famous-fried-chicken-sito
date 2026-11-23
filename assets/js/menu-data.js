@@ -58,8 +58,8 @@ window.FFC_MENU = {
   "bestSellers": [
     820897,
     820898,
-    820885,
-    828529
+    828529,
+    820885
   ],
   "categories": [
     {
@@ -81,7 +81,7 @@ window.FFC_MENU = {
             820898,
             827836,
             828529,
-            828474
+            827835
           ],
           "options": [
             {
@@ -508,8 +508,8 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             827836,
-            828474,
             828529,
+            828463,
             820902
           ],
           "options": [
@@ -1370,10 +1370,10 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            820897,
             820898,
-            820885,
-            820881
+            820897,
+            828474,
+            820892
           ],
           "options": [
             {
@@ -2080,7 +2080,7 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            828530
+            828528
           ],
           "options": [
             {
@@ -3075,9 +3075,7 @@ window.FFC_MENU = {
           "available": true,
           "spice": 0,
           "tags": [],
-          "pairsWith": [
-            828530
-          ],
+          "pairsWith": [],
           "options": [
             {
               "id": 176568,
@@ -3146,8 +3144,8 @@ window.FFC_MENU = {
           "pairsWith": [
             820897,
             820898,
-            820893,
-            827836
+            827836,
+            820893
           ],
           "options": [
             {
@@ -3282,9 +3280,9 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             828529,
-            828463,
             820897,
-            828528
+            828530,
+            828474
           ],
           "options": []
         },
@@ -3299,8 +3297,7 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             828529,
-            820897,
-            827832
+            820897
           ],
           "options": []
         },
@@ -3380,7 +3377,9 @@ window.FFC_MENU = {
           "available": true,
           "spice": 0,
           "tags": [],
-          "pairsWith": [],
+          "pairsWith": [
+            828528
+          ],
           "options": []
         }
       ]
@@ -3486,7 +3485,10 @@ window.FFC_MENU = {
           "available": true,
           "spice": 0,
           "tags": [],
-          "pairsWith": [],
+          "pairsWith": [
+            828530,
+            828529
+          ],
           "options": []
         },
         {
@@ -3498,9 +3500,7 @@ window.FFC_MENU = {
           "available": true,
           "spice": 0,
           "tags": [],
-          "pairsWith": [
-            828529
-          ],
+          "pairsWith": [],
           "options": []
         },
         {
@@ -3514,7 +3514,7 @@ window.FFC_MENU = {
           "tags": [],
           "pairsWith": [
             828530,
-            828529
+            828528
           ],
           "options": []
         },
@@ -3528,9 +3528,8 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
-            837718,
-            828530,
-            828463
+            828528,
+            828530
           ],
           "options": []
         },
@@ -3582,6 +3581,8 @@ window.FFC_MENU = {
           "spice": 0,
           "tags": [],
           "pairsWith": [
+            828530,
+            827837,
             828529,
             828474
           ],
